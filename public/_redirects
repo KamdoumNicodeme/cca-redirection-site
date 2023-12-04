@@ -1,4 +1,6 @@
-/transaction  /transaction 
-/auth-pin  /auth-pin 
-/setup-pin /setup-pin 
-/pin-change  /pin-change
+/transaction     /index.html   200
+/auth-pin        /index.html   200
+/setup-pin       /index.html   200
+/pin-change      /index.html   200
+/*               /index.html   404
+
