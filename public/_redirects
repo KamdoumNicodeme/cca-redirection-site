@@ -1,1 +1,4 @@
-/transaction /auth-pin /setup-pin /pin-change
+/transaction  /transaction 
+/auth-pin  /auth-pin 
+/setup-pin /setup-pin 
+/pin-change  /pin-change
