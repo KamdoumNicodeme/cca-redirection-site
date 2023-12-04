@@ -32,8 +32,9 @@ const TransactionInfo = () => {
         }
 
         const numeroCompte = numero;
+        const agence = selectedAgence;
 
-        axios.get(`https://simu-api-service-2.onrender.com/users/${numeroCompte}`)
+        axios.get(`https://simu-api-service-2.onrender.com/users/${numeroCompte}/${agence}`)
             .then((response) => {
                 if (response.data) {
                     const user = response.data;
@@ -59,7 +60,7 @@ const TransactionInfo = () => {
                         value={selectedAgence}
                         onChange={(e) => setSelectedAgence(e.target.value)}
                         className="rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm h-10"
-                        required // Champ obligatoire
+                        required
                     >
                         <option value="" disabled>
                             Choisissez une agence
