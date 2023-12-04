@@ -57,8 +57,8 @@ const TransactionInfo = () => {
                             Choisissez une agence
                         </option>
                         {agences.map((agence) => (
-                            <option key={agence.code} value={agence.code}>
-                                {agence.nom}
+                            <option key={agence.code_agence} value={agence.code_agence}>
+                                {agence.nom_agence}
                             </option>
                         ))}
                     </select>
