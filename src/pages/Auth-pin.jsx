@@ -50,7 +50,7 @@ const AuthPin = () => {
                             value={pin}
                         />
                         <button type="submit" className="bg-violet-500 text-white rounded-lg px-4 py-2 mt-4 w-full">
-                            Soumettre
+                            Valider
                         </button>
                     </form>
                 )}
