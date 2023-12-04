@@ -11,7 +11,6 @@ const TransactionInfo = () => {
         axios.get("https://simu-api-service-2.onrender.com/agence/all")
             .then((response) => {
                 if (response.data && Array.isArray(response.data.agences)) {
-
                     setAgences(response.data.agences);
                 } else {
                     // Gérer l'erreur
@@ -24,6 +23,14 @@ const TransactionInfo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Vérifier si les champs sont renseignés
+        if (!selectedAgence || !numero) {
+            // Gérer le cas où l'agence ou le numéro de compte n'est pas renseigné
+            console.log("Veuillez sélectionner une agence et entrer un numéro de compte.");
+            return;
+        }
+
         const numeroCompte = numero;
 
         axios.get(`https://simu-api-service-2.onrender.com/users/${numeroCompte}`)
@@ -52,6 +59,7 @@ const TransactionInfo = () => {
                         value={selectedAgence}
                         onChange={(e) => setSelectedAgence(e.target.value)}
                         className="rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm h-10"
+                        required // Champ obligatoire
                     >
                         <option value="" disabled>
                             Choisissez une agence
@@ -73,6 +81,7 @@ const TransactionInfo = () => {
                         placeholder="Numéro de compte du bénéficiaire"
                         value={numero}
                         onChange={(e) => setNumero(e.target.value)}
+                        required // Champ obligatoire
                     />
 
                     <button
