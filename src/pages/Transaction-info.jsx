@@ -8,7 +8,7 @@ const TransactionInfo = () => {
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
-        axios.get("localhost:3000/agences")
+        axios.get("localhost:3000//agence/all")
             .then((response) => {
                 if (response.data) {
                     setAgences(response.data);
