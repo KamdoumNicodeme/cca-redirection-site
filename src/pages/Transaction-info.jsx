@@ -10,9 +10,9 @@ const TransactionInfo = () => {
         // Charger la liste des agences depuis l'API
         axios.get("https://simu-api-service-2.onrender.com/agence/all")
             .then((response) => {
-                if (response.data) {
-                    console.log(Array.isArray(response.data));
-                    setAgences(response.data);
+                if (response.data && Array.isArray(response.data.agences)) {
+
+                    setAgences(response.data.agences);
                 } else {
                     // Gérer l'erreur
                 }
