@@ -8,7 +8,7 @@ const TransactionInfo = () => {
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
-        axios.get("localhost:3000//agence/all")
+        axios.get("https://simu-api-service-2.onrender.com/agence/all")
             .then((response) => {
                 if (response.data) {
                     setAgences(response.data);
@@ -25,7 +25,7 @@ const TransactionInfo = () => {
         e.preventDefault();
         const numeroCompte = numero;
 
-        axios.get(`localhost:3000/users/${numeroCompte}`)
+        axios.get(`https://simu-api-service-2.onrender.com/users/${numeroCompte}`)
             .then((response) => {
                 if (response.data) {
                     const user = response.data;
