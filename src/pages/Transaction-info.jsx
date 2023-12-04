@@ -4,7 +4,7 @@ import axios from "axios";
 const TransactionInfo = () => {
     const [numero, setNumero] = useState("");
     const [selectedAgence, setSelectedAgence] = useState("");
-    const [agences, setAgences] = useState([]);
+    const [agences, setAgences] = useState({});
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
