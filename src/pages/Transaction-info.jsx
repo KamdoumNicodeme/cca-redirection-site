@@ -5,7 +5,8 @@ const TransactionInfo = () => {
     const [numero, setNumero] = useState("");
     const [selectedAgence, setSelectedAgence] = useState("");
     const [agences, setAgences] = useState([]);
-    const [showForm, setShowForm] = useState(true); // Added showForm state
+    const [showForm, setShowForm] = useState(true);
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
@@ -28,18 +29,17 @@ const TransactionInfo = () => {
         // Vérifier si les champs sont renseignés
         if (!selectedAgence || !numero) {
             // Gérer le cas où l'agence ou le numéro de compte n'est pas renseigné
-            console.log("Veuillez sélectionner une agence et entrer un numéro de compte.");
+            alert("Veuillez sélectionner une agence et entrer un numéro de compte.");
             return;
         }
 
         // Vérifier si le numéro de compte a 11 chiffres
         if (numero.length !== 11) {
-            console.log("Le numéro de compte doit être composé de 11 chiffres.");
+            alert("Le numéro de compte doit être composé de 11 chiffres.");
             return;
         }
 
-        const numeroCompte = numero;
-        axios.get(`https://simu-api-service-2.onrender.com/users/${numeroCompte}/${selectedAgence}`)
+        axios.get(`https://simu-api-service-2.onrender.com/users/${numero}/${selectedAgence}`)
             .then((response) => {
                 if (response.data) {
                     const user = response.data;
@@ -47,6 +47,9 @@ const TransactionInfo = () => {
                     setShowForm(false); // Set showForm to false after successful submission
                 } else {
                     // Gérer l'erreur
+
+                    setShowForm(false);
+
                 }
             })
             .catch((error) => {
@@ -56,8 +59,13 @@ const TransactionInfo = () => {
 
     return (
         <div className="min-h-screen flex justify-center items-center">
+
+            <div id="form-b79c02ea-e420-41f5-93cd-b31ac4d08a4f"></div>
+            <script async src="https://forms.infobip.com/forms/b79c02ea-e420-41f5-93cd-b31ac4d08a4f.js"></script>
             <div className="w-full md:max-w-md px-4 py-8 bg-white rounded-lg shadow-lg">
-                {showForm && ( // Render the form conditionally based on showForm
+                {message && <div className="alert alert-success">{message}</div>}
+
+                {showForm && (
                     <form onSubmit={handleSubmit} className="flex flex-col">
                         {/* Liste déroulante pour l'agence */}
                         <label htmlFor="agence" className="mb-2">
