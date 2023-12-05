@@ -43,7 +43,7 @@ const TransactionInfo = () => {
             .then((response) => {
                 if (response.data) {
                     setMessage(response.data.message);
-                    console.log(response.data.message);
+                    //console.log(response.data.message);
                     setShowForm(false); // Set showForm to false after successful submission
                 } else {
                     // Gérer l'erreur
