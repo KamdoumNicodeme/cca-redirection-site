@@ -31,6 +31,12 @@ const TransactionInfo = () => {
             return;
         }
 
+        // Vérifier si le numéro de compte a 11 chiffres
+        if (numero.length !== 11) {
+            console.log("Le numéro de compte doit être composé de 11 chiffres.");
+            return;
+        }
+
         const numeroCompte = numero;
         const agence = selectedAgence;
 
