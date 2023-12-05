@@ -42,15 +42,15 @@ const TransactionInfo = () => {
         axios.get(`https://simu-api-service-2.onrender.com/users/${numero}/${selectedAgence}`)
             .then((response) => {
                 if (response.data) {
-                    setMessage(response.data.message);
+                    setMessage(response.message);
                     //console.log(response.data.message);
                     setShowForm(false); // Set showForm to false after successful submission
                 } else {
                     // Gérer l'erreur
 
                     setShowForm(false);
-                    setMessage(response.data.message);
-                    console.log(response.data.message);
+                    setMessage(response.message);
+                    console.log(response.message);
 
                 }
             })
