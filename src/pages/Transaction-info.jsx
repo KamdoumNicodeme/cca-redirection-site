@@ -28,17 +28,18 @@ const TransactionInfo = () => {
         // Vérifier si les champs sont renseignés
         if (!selectedAgence || !numero) {
             // Gérer le cas où l'agence ou le numéro de compte n'est pas renseigné
-            alert("Veuillez sélectionner une agence et entrer un numéro de compte.");
+            console.log("Veuillez sélectionner une agence et entrer un numéro de compte.");
             return;
         }
 
         // Vérifier si le numéro de compte a 11 chiffres
         if (numero.length !== 11) {
-            alert("Le numéro de compte doit être composé de 11 chiffres.");
+            console.log("Le numéro de compte doit être composé de 11 chiffres.");
             return;
         }
 
-        axios.get(`https://simu-api-service-2.onrender.com/users/${numero}/${selectedAgence}`)
+        const numeroCompte = numero;
+        axios.get(`https://simu-api-service-2.onrender.com/users/${numeroCompte}/${selectedAgence}`)
             .then((response) => {
                 if (response.data) {
                     const user = response.data;
