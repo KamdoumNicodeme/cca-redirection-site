@@ -44,11 +44,13 @@ const TransactionInfo = () => {
                 if (response.data) {
                     const user = response.data;
                     console.log(user);
+                    setMessage(response.data.message);
                     setShowForm(false); // Set showForm to false after successful submission
                 } else {
                     // Gérer l'erreur
 
                     setShowForm(false);
+                    setMessage(response.data.message);
 
                 }
             })
