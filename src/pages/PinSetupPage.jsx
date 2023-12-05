@@ -4,7 +4,7 @@ const PinSetupPage = () => {
     const [pin, setPin] = useState("");
     const [confirmedPin, setConfirmedPin] = useState("");
     const [error, setError] = useState("");
-    const [showForm, setShowForm] = useState(true); // Added showForm state
+    //const [showForm, setShowForm] = useState(true); // Added showForm state
 
     const handlePinChange = (e) => {
         setPin(e.target.value);
