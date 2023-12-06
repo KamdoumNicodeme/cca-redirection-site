@@ -27,6 +27,9 @@ const AuthPin = () => {
 
                 case "releve-compte":
 
+                    response = await axios.post("https://simu-api-service-2.onrender.com/users/mini-releve", {
+                        codePin: parseInt(pin),
+                    });
                     break;
 
                 default:
