@@ -10,10 +10,10 @@ const TransactionInfo = () => {
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
-        axios.get("https://simu-api-service-2.onrender.com/agence/all")
+        axios.get("http://192.168.30.174:8080/api/entities/agencies")
             .then((response) => {
-                if (response.data && Array.isArray(response.data.agences)) {
-                    setAgences(response.data.agences);
+                if (response.data && Array.isArray(response.data)) {
+                    setAgences(response.data);
                 } else {
                     // Gérer l'erreur
                 }
@@ -83,8 +83,8 @@ const TransactionInfo = () => {
                                 Choisissez une agence
                             </option>
                             {agences.map((agence) => (
-                                <option key={agence.code_agence} value={agence.code_agence}>
-                                    {agence.nom_agence}
+                                <option key={agence.code} value={agence.code}>
+                                    {agence.name}
                                 </option>
                             ))}
                         </select>
