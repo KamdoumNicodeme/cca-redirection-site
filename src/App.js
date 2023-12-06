@@ -12,8 +12,8 @@ function App() {
   return (
       <BrowserRouter>
           <Routes>
-              <Route path="/transaction" element={<TransactionInfo />} />
-              <Route path="/auth-pin" element={<AuthPin />} />-
+              <Route path="/transaction/:id_transaction" element={<TransactionInfo />} />
+              <Route path="/auth-pin/:operation" element={<AuthPin />} />-
               <Route path="/setup-pin" element={<PinSetupPage />} />
               <Route path="/pin-change" element={<PinChangePage />} />
               <Route path="/otp-validation" element={<OTPValidation/>} />
