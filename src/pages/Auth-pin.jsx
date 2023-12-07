@@ -6,7 +6,14 @@ const AuthPin = () => {
     const [pin, setPin] = useState("");
     const [message, setMessage] = useState("");
     const [showForm, setShowForm] = useState(true);
-    const {operation} = useParams(); // Récupération du paramètre de la route
+    const {phone_number, account_number, operation} = useParams();
+    const decodePhonenumber = atob(phone_number);
+    const decodeAccountnumber = atob(account_number);
+    const decodeOperation = atob(operation);
+    const decodeOperation1 = atob(operation);
+
+    console.log(decodeOperation);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,21 +21,21 @@ const AuthPin = () => {
         try {
             let response;
 
-            switch (operation) {
-                case "validate-transaction":
-                    response = await axios.post("URL_ENDPOINT_TRANSACTION", {codePin: parseInt(pin)});
-                    break;
+            switch (decodeOperation) {
 
-                case "consulter-solde":
-                    response = await axios.post("https://simu-api-service-2.onrender.com/users/verifier-solde", {
-                        codePin: parseInt(pin),
+
+                case decodeOperation:
+                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api
+/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                        code: parseInt(pin),
                     });
                     break;
 
-                case "releve-compte":
+                case decodeOperation1:
 
-                    response = await axios.post("https://simu-api-service-2.onrender.com/users/mini-releve", {
-                        codePin: parseInt(pin),
+                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api
+/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                        code: parseInt(pin),
                     });
                     break;
 

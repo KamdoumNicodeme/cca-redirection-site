@@ -1,10 +1,15 @@
-import { useState } from "react";
+import {useState} from "react";
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
 const PinChangePage = () => {
     const [currentPin, setCurrentPin] = useState("");
     const [newPin, setNewPin] = useState("");
     const [confirmedNewPin, setConfirmedNewPin] = useState("");
     const [error, setError] = useState("");
+
+    const {phone_number} = useParams();
+    const decodedPhone = atob(phone_number);
 
     const handleCurrentPinChange = (e) => {
         setCurrentPin(e.target.value);
@@ -23,24 +28,25 @@ const PinChangePage = () => {
 
         // Ici, tu devrais ajouter une logique pour vérifier le code PIN actuel avant la modification
         // For the sake of simplicity, I'm assuming a fixed current PIN for the example.
-        const currentCorrectPin = "1234";
+        // const currentCorrectPin = "1234";
 
-        if (currentPin === currentCorrectPin) {
-            // Le code PIN actuel est correct, vérifier et mettre à jour le nouveau code PIN
-            if (newPin === confirmedNewPin) {
-                // Les nouveaux codes PIN correspondent, tu peux effectuer l'action souhaitée ici
-                console.log("PIN updated successfully:", newPin);
-                setError("");
-                // Réinitialiser les champs après la modification si nécessaire
-                setCurrentPin("");
-                setNewPin("");
-                setConfirmedNewPin("");
-            } else {
-                setError("Les nouveaux codes PIN ne correspondent pas. Veuillez réessayer.");
-            }
+
+        // Le code PIN actuel est correct, vérifier et mettre à jour le nouveau code PIN
+        if (newPin === confirmedNewPin) {
+            axios.put(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/updatePinCode?phoneNumber=${decodedPhone}`, {
+                newCode: parseInt(newPin),
+                oldCode: parseInt(currentPin)
+            });
+            console.log("PIN updated successfully:", newPin);
+            setError("");
+            // Réinitialiser les champs après la modification si nécessaire
+            setCurrentPin("");
+            setNewPin("");
+            setConfirmedNewPin("");
         } else {
-            setError("Le code PIN actuel est incorrect. Veuillez réessayer.");
+            setError("Les nouveaux codes PIN ne correspondent pas. Veuillez réessayer.");
         }
+
     };
 
     return (

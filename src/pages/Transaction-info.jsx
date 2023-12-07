@@ -13,9 +13,11 @@ const TransactionInfo = () => {
         axios.get("http://192.168.30.174:8080/api/entities/agencies")
             .then((response) => {
                 if (response.data && Array.isArray(response.data)) {
+                    console.log(response.data)
                     setAgences(response.data);
                 } else {
                     // Gérer l'erreur
+                    console.log(response.data)
                 }
             })
             .catch((error) => {

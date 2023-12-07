@@ -13,10 +13,10 @@ function App() {
       <BrowserRouter>
           <Routes>
               <Route path="/transaction/:id_transaction" element={<TransactionInfo />} />
-              <Route path="/auth-pin/:operation" element={<AuthPin />} />-
-              <Route path="/setup-pin" element={<PinSetupPage />} />
-              <Route path="/pin-change" element={<PinChangePage />} />
-              <Route path="/otp-validation" element={<OTPValidation/>} />
+              <Route path="/auth-pin/:phone_number/:account_number/:operation" element={<AuthPin />} />-
+              <Route path="/setup-pin/:phone_number" element={<PinSetupPage />} />
+              <Route path="/pin-change/:phone_number" element={<PinChangePage />} />
+              <Route path="/otp-validation/:phone_number/:account_number" element={<OTPValidation/>} />
           </Routes>
       </BrowserRouter>
   );

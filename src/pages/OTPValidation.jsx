@@ -1,18 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 const OTPValidation = () => {
     const [otp, setOtp] = useState("");
     const [message, setMessage] = useState("");
     const [showForm, setShowForm] = useState(true);
 
+    const { phone_number,account_number } = useParams();
+    let decodedPhoneNumber = atob(phone_number);
+    let decodedAccountNumber = atob(account_number);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Vous pouvez envoyer l'OTP à votre API pour vérification
         axios
-            .post("https://simu-api-service-2.onrender.com/users/verifier-otp", {
-                otp: parseInt(otp),
+            .post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/validateOtp?phoneNumber=${decodedPhoneNumber}&accountNumber=${decodedAccountNumber}`, {
+                code: parseInt(otp),
             })
             .then((response) => {
                 if (response.data && response.data.message) {
@@ -32,6 +37,8 @@ const OTPValidation = () => {
     return (
         <div className="min-h-screen flex justify-center items-center">
             <div className="w-full md:max-w-md px-4 py-8 bg-white rounded-lg shadow-lg">
+                <div id="form-b79c02ea-e420-41f5-93cd-b31ac4d08a4f"></div>
+                <script async src="https://forms.infobip.com/forms/b79c02ea-e420-41f5-93cd-b31ac4d08a4f.js"></script>
                 {message && <div className="alert alert-success">{message}</div>}
                 {showForm && (
                     <form onSubmit={handleSubmit}>

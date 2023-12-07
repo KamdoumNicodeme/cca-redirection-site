@@ -1,10 +1,18 @@
 import { useState } from "react";
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
 const PinSetupPage = () => {
     const [pin, setPin] = useState("");
     const [confirmedPin, setConfirmedPin] = useState("");
     const [error, setError] = useState("");
-    //const [showForm, setShowForm] = useState(true); // Added showForm state
+    const [message, setMessage] = useState("");
+    const {phone_number} = useParams();
+
+    let decodedNumber = atob(phone_number);
+    console.log(phone_number);
+
+    const [showForm, setShowForm] = useState(true); // Added showForm state
 
     const handlePinChange = (e) => {
         setPin(e.target.value);
@@ -18,7 +26,23 @@ const PinSetupPage = () => {
         e.preventDefault();
 
         if (pin === confirmedPin) {
-            // Les codes PIN correspondent, tu peux effectuer l'action souhaitée ici
+            axios
+                .post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/setPinCode?phoneNumber=${decodedNumber}`, {
+                    code: parseInt(pin),
+                })
+                .then((response) => {
+                    if (response.data && response.data) {
+                        setMessage(response.data);
+                        setShowForm(false);
+                    } else {
+                        setMessage(response.data);
+                        setShowForm(false);
+                    }
+                })
+                .catch((error) => {
+                    // Gérer l'erreur
+                    console.error(error);
+                });
             console.log("PIN set successfully:", pin);
             setError("");
         } else {
@@ -29,7 +53,11 @@ const PinSetupPage = () => {
 
     return (
         <div className="min-h-screen flex justify-center items-center">
+            <div id="form-b79c02ea-e420-41f5-93cd-b31ac4d08a4f"></div>
+            <script async src="https://forms.infobip.com/forms/b79c02ea-e420-41f5-93cd-b31ac4d08a4f.js"></script>
             <div className="w-full md:max-w-md px-4 py-8 bg-white rounded-lg shadow-lg">
+                {message && <div className="alert alert-success">{message}</div>}
+                {showForm && (
                 <form onSubmit={handleSubmit} className="flex flex-col">
                     <label htmlFor="pin" className="mb-2">
                         Créez votre code PIN :
@@ -68,6 +96,7 @@ const PinSetupPage = () => {
                         Confirmer le code PIN
                     </button>
                 </form>
+                )}
             </div>
         </div>
     );
