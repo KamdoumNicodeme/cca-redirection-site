@@ -11,6 +11,7 @@ const AuthPin = () => {
     const decodeAccountnumber = atob(account_number);
     const decodeOperation = atob(operation);
     const decodeOperation1 = atob(operation);
+    const decodeOperation2 = atob(operation);
 
     console.log(decodeOperation);
 
@@ -38,6 +39,15 @@ const AuthPin = () => {
                         code: parseInt(pin),
                     });
                     break;
+
+                case decodeOperation2:
+
+                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api
+/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                        code: parseInt(pin),
+                    });
+                    break;
+
 
                 default:
                     console.error("Type d'opération non géré.");

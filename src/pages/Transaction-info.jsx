@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 const TransactionInfo = () => {
     const [numero, setNumero] = useState("");
@@ -7,6 +8,12 @@ const TransactionInfo = () => {
     const [agences, setAgences] = useState([]);
     const [showForm, setShowForm] = useState(true);
     const [message, setMessage] = useState("");
+    const {phone_number, account_number, operation} = useParams();
+
+    const decodePhonenumber = atob(phone_number);
+    const decodeAccountnumber = atob(account_number);
+    const decodeOperation = atob(operation);
+
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
@@ -41,11 +48,17 @@ const TransactionInfo = () => {
             return;
         }
 
-        axios.get(`https://simu-api-service-2.onrender.com/users/${numero}/${selectedAgence}`)
+        axios.put(`https://c07c-129-0-182-242.ngrok-free.app/api
+/chatbot/operation/acad?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                accountNumber: numero,
+                branchCode: selectedAgence
+            }
+        )
             .then((response) => {
                 if (response.data) {
                     setMessage(response.data.message);
-                    //console.log(response.data.message);
+                    console.log(numero);
+                    console.log(agences);
                     setShowForm(false); // Set showForm to false after successful submission
                 } else {
                     // Gérer l'erreur

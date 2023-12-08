@@ -17,7 +17,7 @@ const OTPValidation = () => {
         // Vous pouvez envoyer l'OTP à votre API pour vérification
         axios
             .post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/validateOtp?phoneNumber=${decodedPhoneNumber}&accountNumber=${decodedAccountNumber}`, {
-                code: parseInt(otp),
+                code: otp,
             })
             .then((response) => {
                 if (response.data && response.data.message) {
@@ -33,6 +33,8 @@ const OTPValidation = () => {
                 console.error(error);
             });
     };
+
+    console.log(otp)
 
     return (
         <div className="min-h-screen flex justify-center items-center">

@@ -12,7 +12,7 @@ function App() {
   return (
       <BrowserRouter>
           <Routes>
-              <Route path="/transaction/:id_transaction" element={<TransactionInfo />} />
+              <Route path="/transaction/:phone_number/:account_number/:operation" element={<TransactionInfo />} />
               <Route path="/auth-pin/:phone_number/:account_number/:operation" element={<AuthPin />} />-
               <Route path="/setup-pin/:phone_number" element={<PinSetupPage />} />
               <Route path="/pin-change/:phone_number" element={<PinChangePage />} />
