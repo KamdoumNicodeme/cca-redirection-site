@@ -1,8 +1,8 @@
 /transaction/:id_transaction     /index.html   200
-/auth-pin/:operation        /index.html   200
-/setup-pin       /index.html   200
-/pin-change      /index.html   200
-/otp-validation  /index.html   200
+/auth-pin/:phone_number/:account_number/:operation       /index.html   200
+/setup-pin/:phone_number      /index.html   200
+/pin-change/:phone_number      /index.html   200
+/otp-validation/:phone_number/:account_number  /index.html   200
 /*               /index.html   404
 
 
