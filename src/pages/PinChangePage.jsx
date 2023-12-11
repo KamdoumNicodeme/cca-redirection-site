@@ -36,8 +36,8 @@ const PinChangePage = () => {
             axios.put(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/updatePinCode?phoneNumber=${decodedPhone}`, {
                 newCode: parseInt(newPin),
                 oldCode: parseInt(currentPin)
-            });
-            console.log("PIN updated successfully:", newPin);
+            }).then(r => console.log("PIN updated successfully:", newPin));
+
             setError("");
             // Réinitialiser les champs après la modification si nécessaire
             setCurrentPin("");

@@ -86,6 +86,7 @@ const AuthPin = () => {
                             placeholder="Entrez votre code PIN"
                             onChange={(e) => setPin(e.target.value)}
                             value={pin}
+                            required
                         />
                         <button type="submit" className="bg-violet-500 text-white rounded-lg px-4 py-2 mt-4 w-full">
                             Valider
