@@ -15,7 +15,6 @@ const AuthPin = () => {
 
     console.log(decodeOperation);
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -23,31 +22,23 @@ const AuthPin = () => {
             let response;
 
             switch (decodeOperation) {
-
-
                 case decodeOperation:
-                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api
-/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                         code: parseInt(pin),
                     });
                     break;
 
                 case decodeOperation1:
-
-                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api
-/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                         code: parseInt(pin),
                     });
                     break;
 
                 case decodeOperation2:
-
-                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api
-/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                         code: parseInt(pin),
                     });
                     break;
-
 
                 default:
                     console.error("Type d'opération non géré.");
@@ -64,6 +55,7 @@ const AuthPin = () => {
         } catch (error) {
             console.error(error);
             setMessage("Une erreur s'est produite lors de la requête.");
+            setShowForm(false);
         }
     };
 

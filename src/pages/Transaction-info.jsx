@@ -70,7 +70,8 @@ const TransactionInfo = () => {
                 }
             })
             .catch((error) => {
-                // Gérer l'erreur
+                setShowForm(false);
+                setMessage(error);
             });
     };
 

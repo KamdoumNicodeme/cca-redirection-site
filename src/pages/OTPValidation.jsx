@@ -29,6 +29,7 @@ const OTPValidation = () => {
                 }
             })
             .catch((error) => {
+                setShowForm(error);
                 // Gérer l'erreur
                 console.error(error);
             });

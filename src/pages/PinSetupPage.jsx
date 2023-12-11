@@ -42,10 +42,12 @@ const PinSetupPage = () => {
                 .catch((error) => {
                     // Gérer l'erreur
                     console.error(error);
+                    setShowForm(false);
                 });
             console.log("PIN set successfully:", pin);
             setError("");
         } else {
+            setShowForm(false);
             // Les codes PIN ne correspondent pas, afficher une erreur
             setError("Les codes PIN ne correspondent pas. Veuillez réessayer.");
         }
