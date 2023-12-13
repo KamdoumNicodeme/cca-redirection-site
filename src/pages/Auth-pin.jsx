@@ -1,6 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {BASE_URL} from "../utils/util";
 
 const AuthPin = () => {
     const [pin, setPin] = useState("");
@@ -13,6 +14,7 @@ const AuthPin = () => {
     const decodeOperation1 = atob(operation);
     const decodeOperation2 = atob(operation);
 
+
     console.log(decodeOperation);
 
     const handleSubmit = async (e) => {
@@ -23,19 +25,19 @@ const AuthPin = () => {
 
             switch (decodeOperation) {
                 case decodeOperation:
-                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                    response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                         code: parseInt(pin),
                     });
                     break;
 
                 case decodeOperation1:
-                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                    response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                         code: parseInt(pin),
                     });
                     break;
 
                 case decodeOperation2:
-                    response = await axios.post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                    response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                         code: parseInt(pin),
                     });
                     break;

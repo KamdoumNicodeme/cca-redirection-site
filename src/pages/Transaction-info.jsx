@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {BASE_URL} from "../utils/util";
 
 const TransactionInfo = () => {
     const [numero, setNumero] = useState("");
@@ -27,9 +28,7 @@ const TransactionInfo = () => {
                     console.log(response.data)
                 }
             })
-            .catch((error) => {
-                // Gérer l'erreur
-            });
+
     }, []);
 
     const handleSubmit = (e) => {
@@ -48,8 +47,7 @@ const TransactionInfo = () => {
             return;
         }
 
-        axios.put(`https://c07c-129-0-182-242.ngrok-free.app/api
-/chatbot/operation/acad?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+        axios.put(`${BASE_URL}/operation/acad?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                 accountNumber: numero,
                 branchCode: selectedAgence
             }

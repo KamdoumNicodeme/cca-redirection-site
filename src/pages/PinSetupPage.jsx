@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {BASE_URL} from "../utils/util";
 
 const PinSetupPage = () => {
     const [pin, setPin] = useState("");
@@ -27,7 +28,7 @@ const PinSetupPage = () => {
 
         if (pin === confirmedPin) {
             axios
-                .post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/setPinCode?phoneNumber=${decodedNumber}`, {
+                .post(`${BASE_URL}/customer/setPinCode?phoneNumber=${decodedNumber}`, {
                     code: parseInt(pin),
                 })
                 .then((response) => {

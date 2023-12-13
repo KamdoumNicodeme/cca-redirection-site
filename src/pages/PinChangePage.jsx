@@ -1,6 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {BASE_URL} from "../utils/util";
 
 const PinChangePage = () => {
     const [currentPin, setCurrentPin] = useState("");
@@ -33,7 +34,7 @@ const PinChangePage = () => {
 
         // Le code PIN actuel est correct, vérifier et mettre à jour le nouveau code PIN
         if (newPin === confirmedNewPin) {
-            axios.put(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/updatePinCode?phoneNumber=${decodedPhone}`, {
+            axios.put(`${BASE_URL}/customer/updatePinCode?phoneNumber=${decodedPhone}`, {
                 newCode: parseInt(newPin),
                 oldCode: parseInt(currentPin)
             }).then(r => console.log("PIN updated successfully:", newPin));

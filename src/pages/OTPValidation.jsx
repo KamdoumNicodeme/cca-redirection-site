@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {BASE_URL} from "../utils/util";
 
 const OTPValidation = () => {
     const [otp, setOtp] = useState("");
@@ -16,7 +17,7 @@ const OTPValidation = () => {
 
         // Vous pouvez envoyer l'OTP à votre API pour vérification
         axios
-            .post(`https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/customer/validateOtp?phoneNumber=${decodedPhoneNumber}&accountNumber=${decodedAccountNumber}`, {
+            .post(`${BASE_URL}/customer/validateOtp?phoneNumber=${decodedPhoneNumber}&accountNumber=${decodedAccountNumber}`, {
                 code: otp,
             })
             .then((response) => {
