@@ -11,9 +11,6 @@ const AuthPin = () => {
     const decodePhonenumber = atob(phone_number);
     const decodeAccountnumber = atob(account_number);
     const decodeOperation = atob(operation);
-    const decodeOperation1 = atob(operation);
-    const decodeOperation2 = atob(operation);
-
 
     console.log(decodeOperation);
 
@@ -21,31 +18,9 @@ const AuthPin = () => {
         e.preventDefault();
 
         try {
-            let response;
-
-            switch (decodeOperation) {
-                case decodeOperation:
-                    response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
-                        code: parseInt(pin),
-                    });
-                    break;
-
-                case decodeOperation1:
-                    response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
-                        code: parseInt(pin),
-                    });
-                    break;
-
-                case decodeOperation2:
-                    response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
-                        code: parseInt(pin),
-                    });
-                    break;
-
-                default:
-                    console.error("Type d'opération non géré.");
-                    return;
-            }
+            const response = await axios.put(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+                code: parseInt(pin),
+            });
 
             if (response.data && response.data.message) {
                 setMessage(response.data.message);

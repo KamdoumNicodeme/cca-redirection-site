@@ -1,1 +1,1 @@
-export const BASE_URL = "https://c07c-129-0-182-242.ngrok-free.app/api/chatbot/";
+export const BASE_URL = "https://109c-102-132-20-178.ngrok-free.app/api/chatbot";
