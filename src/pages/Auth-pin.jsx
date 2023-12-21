@@ -18,7 +18,7 @@ const AuthPin = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+            const response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                 code: parseInt(pin),
             });
 
