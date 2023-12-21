@@ -15,6 +15,13 @@ const PinSetupPage = () => {
 
     const [showForm, setShowForm] = useState(true); // Added showForm state
 
+    const instance = axios.create({
+        baseURL: BASE_URL,
+        // Autres configurations...
+        httpsAgent: {
+            rejectUnauthorized: false // Désactive la vérification du certificat
+        }
+    });
     const handlePinChange = (e) => {
         setPin(e.target.value);
     };
@@ -27,8 +34,8 @@ const PinSetupPage = () => {
         e.preventDefault();
 
         if (pin === confirmedPin) {
-            axios
-                .post(`${BASE_URL}/customer/setPinCode?phoneNumber=${decodedNumber}`, {
+            instance
+                .post(`/customer/setPinCode?phoneNumber=${decodedNumber}`, {
                     code: parseInt(pin),
                 })
                 .then((response) => {

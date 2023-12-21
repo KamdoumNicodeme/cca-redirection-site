@@ -3,6 +3,11 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import {BASE_URL} from "../utils/util";
 
+
+
+
+
+
 const AuthPin = () => {
     const [pin, setPin] = useState("");
     const [message, setMessage] = useState("");
@@ -12,14 +17,23 @@ const AuthPin = () => {
     const decodeAccountnumber = atob(account_number);
     const decodeOperation = atob(operation);
 
+    const instance = axios.create({
+        baseURL: BASE_URL,
+        // Autres configurations...
+        httpsAgent: {
+            rejectUnauthorized: false // Désactive la vérification du certificat
+        }
+    });
+
     console.log(decodeOperation);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${BASE_URL}/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+            const response = await instance.post(`/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                 code: parseInt(pin),
+
             });
 
             if (response.data && response.data.message) {

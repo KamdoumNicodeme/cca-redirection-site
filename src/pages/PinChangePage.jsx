@@ -24,6 +24,14 @@ const PinChangePage = () => {
         setConfirmedNewPin(e.target.value);
     };
 
+    const instance = axios.create({
+        baseURL: BASE_URL,
+        // Autres configurations...
+        httpsAgent: {
+            rejectUnauthorized: false // Désactive la vérification du certificat
+        }
+    });
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -34,7 +42,7 @@ const PinChangePage = () => {
 
         // Le code PIN actuel est correct, vérifier et mettre à jour le nouveau code PIN
         if (newPin === confirmedNewPin) {
-            axios.put(`${BASE_URL}/customer/updatePinCode?phoneNumber=${decodedPhone}`, {
+            instance.put(`/customer/updatePinCode?phoneNumber=${decodedPhone}`, {
                 newCode: parseInt(newPin),
                 oldCode: parseInt(currentPin)
             }).then(r => console.log("PIN updated successfully:", newPin));

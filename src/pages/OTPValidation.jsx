@@ -12,12 +12,19 @@ const OTPValidation = () => {
     let decodedPhoneNumber = atob(phone_number);
     let decodedAccountNumber = atob(account_number);
 
+    const instance = axios.create({
+        baseURL: BASE_URL,
+        // Autres configurations...
+        httpsAgent: {
+            rejectUnauthorized: false // Désactive la vérification du certificat
+        }
+    });
     const handleSubmit = (e) => {
         e.preventDefault();
 
         // Vous pouvez envoyer l'OTP à votre API pour vérification
-        axios
-            .post(`${BASE_URL}/customer/validateOtp?phoneNumber=${decodedPhoneNumber}&accountNumber=${decodedAccountNumber}`, {
+        instance
+            .post(`/customer/validateOtp?phoneNumber=${decodedPhoneNumber}&accountNumber=${decodedAccountNumber}`, {
                 code: otp,
             })
             .then((response) => {

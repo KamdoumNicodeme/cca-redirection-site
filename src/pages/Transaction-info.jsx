@@ -3,6 +3,7 @@ import axios from "axios";
 import {useParams} from "react-router-dom";
 import {BASE_URL} from "../utils/util";
 
+
 const TransactionInfo = () => {
     const [numero, setNumero] = useState("");
     const [selectedAgence, setSelectedAgence] = useState("");
@@ -15,10 +16,17 @@ const TransactionInfo = () => {
     const decodeAccountnumber = atob(account_number);
     const decodeOperation = atob(operation);
 
+    const instance = axios.create({
+        baseURL: BASE_URL,
+
+        httpsAgent: {
+            rejectUnauthorized: false // Désactive la vérification du certificat
+        }
+    });
 
     useEffect(() => {
         // Charger la liste des agences depuis l'API
-        axios.get("http://192.168.30.174:8080/api/entities/agencies")
+        instance.get(`/entities/agencies/getAllAgencies`)
             .then((response) => {
                 if (response.data && Array.isArray(response.data)) {
                     console.log(response.data)
@@ -29,7 +37,7 @@ const TransactionInfo = () => {
                 }
             })
 
-    }, []);
+    },[instance] );
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -47,7 +55,7 @@ const TransactionInfo = () => {
             return;
         }
 
-        axios.put(`${BASE_URL}/operation/acad?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+        instance.put(`/operation/acad?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                 accountNumber: numero,
                 branchCode: selectedAgence
             }
