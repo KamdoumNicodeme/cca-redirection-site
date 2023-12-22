@@ -29,11 +29,11 @@ const TransactionInfo = () => {
         instance.get(`/entities/agencies/getAllAgencies`)
             .then((response) => {
                 if (response.data && Array.isArray(response.data)) {
-                    console.log(response.data)
+                   // console.log(response.data)
                     setAgences(response.data);
                 } else {
                     // Gérer l'erreur
-                    console.log(response.data)
+                   // console.log(response.data)
                 }
             })
 
