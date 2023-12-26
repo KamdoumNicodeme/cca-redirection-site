@@ -31,7 +31,7 @@ const AuthPin = () => {
         e.preventDefault();
 
         try {
-            const response = await instance.post(`/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
+            const response = await instance.put(`/operation/finalize?phoneNumber=${decodePhonenumber}&accountNumber=${decodeAccountnumber}&type=${decodeOperation}`, {
                 code: parseInt(pin),
 
             });
