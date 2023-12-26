@@ -36,8 +36,8 @@ const AuthPin = () => {
 
             });
 
-            if (response.data && response.data.message) {
-                setMessage(response.data.message);
+            if (response.data) {
+                setMessage("Operation succès retourner dans le chat pour la suite des operations");
                 setShowForm(false);
             } else {
                 setMessage("Une erreur s'est produite.");
