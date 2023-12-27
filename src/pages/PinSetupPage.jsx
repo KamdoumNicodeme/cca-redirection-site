@@ -39,8 +39,8 @@ const PinSetupPage = () => {
                     code: parseInt(pin),
                 })
                 .then((response) => {
-                    if (response.data && response.data) {
-                        setMessage(response.data);
+                    if (response.data ) {
+                        setMessage("Pin créer avec succès retourner dans le chat pour continuer les operations");
                         setShowForm(false);
                     } else {
                         setMessage(response.data);

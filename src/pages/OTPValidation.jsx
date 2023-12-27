@@ -28,8 +28,8 @@ const OTPValidation = () => {
                 code: otp,
             })
             .then((response) => {
-                if (response.data && response.data.message) {
-                    setMessage(response.data.message);
+                if (response.data ) {
+                    setMessage("Operation réussit retourner dans le chat pour la suite des operations");
                     setShowForm(false);
                 } else {
                     setMessage(response.data.message);
